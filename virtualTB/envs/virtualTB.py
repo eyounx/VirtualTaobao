@@ -23,6 +23,9 @@ class VirtualTB(gym.Env):
         self.user_action_model = ActionModel()
         self.user_action_model.load()
 
+    def seed(self, sd = 0):
+        torch.manual_seed(sd)
+
     @property
     def state(self):
         return np.concatenate((self.cur_user, self.lst_action), axis = -1)
