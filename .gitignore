@@ -1,0 +1,8 @@
+*.egg-info
+/*.py
+virtualTBtopk.py
+__pycache__/
+virtualTB/__pycache__/
+virtualTB/envs/__pycache__/
+virtualTB/model/__pycache__/
+!setup.py
