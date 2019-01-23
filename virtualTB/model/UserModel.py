@@ -59,7 +59,7 @@ class UserModel(nn.Module):
             one_hot = torch.cat((one_hot, tmp.scatter_(1, torch.multinomial(features[i], 1), 1)), dim = -1)
         return one_hot
 
-    def load(self, path= None):
+    def load(self, path = None):
         if path == None:
             g_path = os.path.dirname(__file__) + '/../data/generator_model.pt'
         self.generator_model.load_state_dict(torch.load(g_path))

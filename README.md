@@ -13,6 +13,8 @@ import virtualTB
 env = gym.make('VirtualTB-v0')
 print(env.action_space)
 print(env.observation_space)
+print(env.observation_space.low)
+print(env.observation_space.high)
 state = env.reset()
 while True:
     env.render()
@@ -33,3 +35,8 @@ This environment is a simulator of an online shopping platform which challenges 
 2. The agent assigns a weight to each attribute of the item.
 3. Platform calculate item values according to the weight vector and select 10 items with the highest value.
 4. Those items are pushed to the user, and user may click on some items(reward++), browse next page (so the agent need to decide new weight vector) or leave the platform.
+
+### TODO
+- Add DDPG/SL baseline
+- Add new environment of 1-vs-n item pushing tasks
+- Re-train the user-action model
