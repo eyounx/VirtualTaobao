@@ -7,7 +7,7 @@ Using VirtualTaobao simulator, one can access a "live" environment just like the
 How VirtualTaobao was trained is described in 
 > Jing-Cheng Shi, Yang Yu, Qing Da, Shi-Yong Chen, and An-Xiang Zeng. [Virtual-Taobao: Virtualizing real-world online retail environment for reinforcement learning](https://arxiv.org/abs/1805.10000). In: Proceedings of the 33rd AAAI Conference on Artificial Intelligence (AAAI’19), Honolulu, HI, 2019. 
 
-Anyone uses this simulator should give credit to the above reference.
+Anyone can this simulator freely, but should give credit to the above reference.
 
 ### Installation
 
