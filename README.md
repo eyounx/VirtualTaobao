@@ -15,7 +15,16 @@ Anyone can this simulator freely, but should give credit to the above reference.
 pip install -e .
 ```
 
-### Usage
+### What will happen when a user raises a query?
+1. Several items related to the query were callbacked to form an itemset.
+2. The agent assigns a weight to each attribute of the item.
+3. Platform calculate item values according to the weight vector and select 10 items with the highest value.
+4. Those items are pushed to the user, and user may click on some items(reward++), browse next page (so the agent need to decide new weight vector) or leave the platform.
+
+### Usage for Supervised Learning
+
+
+### Usage for Reinforcement Learning
 
 ```python
 import gym
@@ -33,9 +42,3 @@ while True:
     if done: break
 env.render()
 ```
-
-**What will happen when user raises a query in this online shopping platform?**
-1. Several items related to the query were callbacked to form an itemset.
-2. The agent assigns a weight to each attribute of the item.
-3. Platform calculate item values according to the weight vector and select 10 items with the highest value.
-4. Those items are pushed to the user, and user may click on some items(reward++), browse next page (so the agent need to decide new weight vector) or leave the platform.
