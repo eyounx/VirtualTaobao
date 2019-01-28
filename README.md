@@ -9,7 +9,7 @@ How VirtualTaobao was trained is described in
 
 We release in this repository a VirtualTaobao model for both the recommondation system research and the reinforcement learning research (see the supervised learning and reinforcement learning use cases below). Anyone can this simulator freely, but should give credit to the above reference.
 
-Currently, VirtualTaobao V0 model (VirtualTB-v0) is provided, which was trained from a middle-scaled anonymized Taobao dataset. More larger models will be release soon.
+Currently, VirtualTaobao V0 model (VirtualTB-v0) is provided, which was trained from a middle-scaled anonymized Taobao dataset. More larger models will be released soon.
 
 ### Installation
 
