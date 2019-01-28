@@ -53,3 +53,7 @@ As a more complete example using DDPG reinforcement learning algorithm is placed
 ```
 virtualTB/ReinforcementLearning/main.py
 ```
+
+### Acknowledgement
+
+This project is an outcome of a joint work of Nanjing University and Alibaba Group, Inc.
