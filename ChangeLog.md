@@ -1,3 +1,7 @@
+## [0.0.4]
+### Added
+- Add RL and SL baselines. Try ```python ./virtualTB/ReinforcementLearning/main.py``` to see more.
+
 ## [0.0.3]
 ### Added
 - This changelog file
