@@ -26,6 +26,8 @@ pip install -e .
 
 ### Usage for Reinforcement Learning
 
+Here is a simplest example of using VirtualTaobao as an environment for reinforcement learning. A random action is sampled every step to do the recommendation.
+
 ```python
 import gym
 import virtualTB
@@ -43,4 +45,9 @@ while True:
     
     if done: break
 env.render()
+```
+
+As a more complete example using DDPG reinforcement learning algorithm is placed in 
+```
+virtualTB/ReinforcementLearning/main.py
 ```
