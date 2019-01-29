@@ -89,21 +89,24 @@ for i_episode in range(1000):
 
     rewards.append(episode_reward)
     if i_episode % 10 == 0:
-        state = torch.Tensor([env.reset()])
         episode_reward = 0
-        while True:
-            action = agent.select_action(state)
+        episode_step = 0
+        for i in range(50):
+            state = torch.Tensor([env.reset()])
+            while True:
+                action = agent.select_action(state)
 
-            next_state, reward, done, info = env.step(action.numpy()[0])
-            episode_reward += reward
+                next_state, reward, done, info = env.step(action.numpy()[0])
+                episode_reward += reward
+                episode_step += 1
 
-            next_state = torch.Tensor([next_state])
+                next_state = torch.Tensor([next_state])
 
-            state = next_state
-            if done:
-                break
+                state = next_state
+                if done:
+                    break
 
-        rewards.append(episode_reward)
-        print("Episode: {}, total numsteps: {}, reward: {}, average reward: {}, CTR: {}".format(i_episode, total_numsteps, rewards[-1], np.mean(rewards[-10:]), info['CTR']))
+        # rewards.append(episode_reward)
+        print("Episode: {}, total numsteps: {}, average reward: {}, CTR: {}".format(i_episode, episode_step, episode_reward / 50, episode_reward / episode_step / 10))
     
 env.close()

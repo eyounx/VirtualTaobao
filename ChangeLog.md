@@ -1,3 +1,10 @@
+## [0.0.5]
+### Added
+- Add dataset(with 100,000 pieces of < user, weight, action > pairs) for supervised learning.
+
+### Changed
+- SL baseline and user action model are updated.
+
 ## [0.0.4]
 ### Added
 - Add RL and SL baselines. Try ```python ./virtualTB/ReinforcementLearning/main.py``` to see more.

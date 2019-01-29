@@ -1,3 +1,5 @@
+import os
+import io
 import time
 import gym
 import torch
@@ -18,19 +20,9 @@ def init_weight(m):
         m.weight.data.normal_(0.0, variance)
         m.bias.data.fill_(0.0)
 
-def timer(function):
-    def function_timer(*args, **kwargs):
-        print('[Function: {name} start...]'.format(name = function.__name__))
-        t0 = time.time()
-        result = function(*args, **kwargs)
-        t1 = time.time()
-        print('[Function: {name} finished, spent time: {time:.2f}s]'.format(name = function.__name__,time = t1 - t0))
-        return result
-    return function_timer
-
-class Policy(nn.Module):
+class Model(nn.Module):
     def __init__(self):
-        super(Policy, self).__init__()
+        super(Model, self).__init__()
         self.model = nn.Sequential(
             nn.Linear(88 + 3, 256),
             nn.Tanh(),
@@ -44,32 +36,7 @@ class Policy(nn.Module):
     def forward(self, x):
         return self.model(x)
 
-    def save(self, path = './'):
-        torch.save(self.model.state_dict(), path + 'sl_model.pt')
-
-    def load(self, path = './'):
-        self.model.load_state_dict(torch.load(path + 'sl_model.pt'))
-
-
-@timer
-def sample(n_samples):
-    state_lst, action_lst, label = [], [], []
-    while len(label) < n_samples:
-        done = False
-        state = env.reset()
-        while not done:
-            action = env.action_space.sample()
-            state, reward, done, info = env.step(action)
-            item = (state, action)
-            state_lst.append(state)
-            action_lst.append(action)
-            label.append(1 if reward > 0 else -1)
-            if done or len(label) >= n_samples: break
-            if len(label) % 10000 == 0:
-                print(len(label))
-    return state_lst, action_lst, label
-        
-def train(state, action, label, batch_size = 5000):
+def train(state, action, label, batch_size = 100):
     N = len(label)
     loss_func = nn.MSELoss()
     batch_num = (len(label) + batch_size - 1) // batch_size
@@ -84,7 +51,7 @@ def train(state, action, label, batch_size = 5000):
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
-            total_loss += loss.detach().numpy()
+            total_loss += loss.detach().numpy() / batch_num
         ctr = test()
         print('Epoch %3d: Loss %.2f CTR: %.2f' % (epoch, total_loss, ctr))
 
@@ -96,23 +63,28 @@ def test():
         done = False
         while not done:
             action = model(FLOAT(state))
+            # action = env.action_space.sample()
             state, reward, done, info = env.step(action)
             total_reward += reward
             total_page += 1
             if done:
                 break
-    # print(total_reward / total_page / 10)
     ctr = total_reward / total_page / 10
     return ctr
 
 if __name__ == '__main__':
     env = gym.make('VirtualTB-v0')
-    model = Policy()
+    model = Model()
     optimizer = optim.Adam(model.parameters(), lr = 0.001)
-    state, action, label = sample(500000)
+    state, action, label = [], [], []
+    with io.open(os.path.dirname(__file__) + '/../data/dataset.txt','r') as file:
+        for line in file:
+            state_l, action_l, label_l = line.split('\t')
+            state.append([float(x) for x in state_l.split(',')])
+            action.append([float(x) for x in action_l.split(',')])
+            label.append(int(label_l))
     state, action, label = FLOAT(state), FLOAT(action), FLOAT(label)
     train(state, action, label)
-    # model.save()
-    # model.load()
-    test()
+    CTR = test()
+    print('CTR: %.2f' % CTR)
 

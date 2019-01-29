@@ -7,7 +7,9 @@ class ActionModel(nn.Module):
         self.model = nn.Sequential(
             nn.Linear(n_input, 128),
             nn.LeakyReLU(),
-            nn.Linear(128, n_output)
+            nn.Linear(128, 256),
+            nn.LeakyReLU(),
+            nn.Linear(256, n_output)
         )
         self.max_a = 11
         self.max_b = 10
