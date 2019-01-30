@@ -18,9 +18,9 @@ pip install -e .
 ```
 
 ### What will happen when a user raises a query?
-1. Several items related to the query were callbacked to form an itemset.
-2. The agent assigns a weight to each attribute of the item.
-3. Platform calculate item values according to the weight vector and select 10 items with the highest value.
+1. Several items related to the query were callbacked to form an itemset. Each item in the itemset have a 27-dimesional attributes indicate the price, sales volume, CTR, etc. (For confidence issue, the itemset will not be exposed.)
+2. The agent assigns a weight to each attribute of the item according to user's feature. The user's feature consists of 13-dimensional static attributes(one-hot encoding) and 3-dimensional dynamic attributes, including user's age, gender, browsing history and so on. 
+3. Platform calculate the product of weight vector and the item attributes, and select 10 items with the highest value.
 4. Those items are pushed to the user, and user may click on some items(reward++), browse next page (so the agent need to decide new weight vector) or leave the platform.
 
 ### Usage for Supervised Learning
