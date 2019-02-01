@@ -22,7 +22,7 @@ Virtual Taobao simulates the customers, items, and recommendation system.
 * A customer is assocated with 13-dimensional static attributes (one-hot encoding) and 3-dimensional dynamic attributes, including user's age, gender, browsing history and so on.
 * An item is assocated with 27-dimesional attributes indicating the price, sales volume, CTR, etc. (For confidence issue, the itemset will not be exposed.)
 
-The process of an interactive process between the system and a customer is as follows
+An interactive process between the system and a customer is as follows
 1. Virtual Taobao samples a feature vector of the customer, including both the customer's description and customer's query.
 2. The system retrives a set of related items according to the query form the whole itemset.
 3. The system uses a model to assign a weight vector corresponding to the item attributes.
