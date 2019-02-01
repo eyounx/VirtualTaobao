@@ -27,7 +27,7 @@ An interactive process between the system and a customer is as follows
 2. The system retrives a set of related items according to the query form the whole itemset.
 3. The system uses a model to assign a weight vector corresponding to the item attributes.
 4. The system calculates the product between the weight vector and the item attributes for each item, and select the top 10 items with the highest values.
-5. The selected 10 items are published to the customer. Then the customer will choose to click on some items (reward++), browse the next page (start over from step 2 with changed customer features), or leave the platform.
+5. The selected 10 items are published to the customer. Then the customer will choose to click on some items (CTR++), browse the next page (start over from step 2 with changed customer features), or leave the platform.
 
 In the above process, the model in step 3, is to be trained. The model inputs the features of the customer and the itemset, and outputs a 27-dimensional weight vector.
 
