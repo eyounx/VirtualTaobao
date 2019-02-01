@@ -17,11 +17,18 @@ Currently, VirtualTaobao V0 model (VirtualTB-v0) is provided, which was trained 
 pip install -e .
 ```
 
-### What will happen when a user raises a query?
-1. Several items related to the query were callbacked to form an itemset. Each item in the itemset have a 27-dimesional attributes indicate the price, sales volume, CTR, etc. (For confidence issue, the itemset will not be exposed.)
-2. The agent assigns a weight to each attribute of the item according to user's feature. The user's feature consists of 13-dimensional static attributes(one-hot encoding) and 3-dimensional dynamic attributes, including user's age, gender, browsing history and so on. 
-3. Platform calculate the product of weight vector and the item attributes, and select 10 items with the highest value.
-4. Those items are pushed to the user, and user may click on some items(reward++), browse next page (so the agent need to decide new weight vector) or leave the platform.
+### Simulated Environment
+Virtual Taobao simulates the customers, items, and recommendation system. 
+* A customer is assocated with 13-dimensional static attributes (one-hot encoding) and 3-dimensional dynamic attributes, including user's age, gender, browsing history and so on.
+* An item is assocated with 27-dimesional attributes indicating the price, sales volume, CTR, etc. (For confidence issue, the itemset will not be exposed.)
+The process of an interactive process between the system and a customer is as follows
+1. Virtual Taobao samples a feature vector of the customer, including both the customer's description and customer's query.
+2. The system retrives a set of related items according to the query form the whole itemset.
+3. The system uses a model to assign a weight vector corresponding to the item attributes.
+4. The system calculates the product between the weight vector and the item attributes for each item, and select the top 10 items with the highest values.
+5. The selected 10 items are published to the customer. Then the customer will choose to click on some items (reward++), browse the next page (start over from step 2 with changed customer features), or leave the platform.
+
+In the above process, the model in step 3, is to be trained. The model inputs the features of the customer and the itemset, and outputs a 27-dimensional weight vector.
 
 ### Usage for Supervised Learning
 
