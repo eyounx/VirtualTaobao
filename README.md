@@ -19,8 +19,8 @@ pip install -e .
 
 ### Simulated Environment
 Virtual Taobao simulates the customers, items, and recommendation system. 
-* A customer is assocated with 13-dimensional static attributes (one-hot encoding) and 3-dimensional dynamic attributes, including user's age, gender, browsing history and so on.
-* An item is assocated with 27-dimesional attributes indicating the price, sales volume, CTR, etc. (For confidence issue, the itemset will not be exposed.)
+* A customer is associated with 13-dimensional static attributes that has been one-hot encoded in to 88 binary dimensions, and 3-dimensional dynamic attributes. The attributes information about involve customer age, customer gender, customer browsing history, etc.
+* An item is associated with 27-dimensional attributes indicating the price, sales volume, CTR, etc. (For confidence issue, the itemset content is not exposed.)
 
 An interactive process between the system and a customer is as follows
 1. Virtual Taobao samples a feature vector of the customer, including both the customer's description and customer's query.
@@ -29,10 +29,25 @@ An interactive process between the system and a customer is as follows
 4. The system calculates the product between the weight vector and the item attributes for each item, and select the top 10 items with the highest values.
 5. The selected 10 items are published to the customer. Then the customer will choose to click on some items (CTR++), browse the next page (start over from step 2 with changed customer features), or leave the platform.
 
-In the above process, the model in step 3, is to be trained. The model inputs the features of the customer and the itemset, and outputs a 27-dimensional weight vector.
+In the above process, the model in step 3, is to be trained. The model inputs the features of the customer, and outputs a 27-dimensional weight vector.
 
 ### Usage for Supervised Learning
 
+A data set is prepared at
+
+```
+virtualTB/SupervisedLearning/dataset.txt
+```
+
+Each line of the data set consists an instance of features, labels, and the number of clicks, separated by tab.
+
+To train a model from the data set, the following codes give an demonstration
+
+```virtualTB/SupervisedLearning/dataset.txt
+virtualTB/SupervisedLearning/main.py
+```
+
+which contains a full process from data set loading, model training, and model test.
 
 ### Usage for Reinforcement Learning
 
@@ -57,7 +72,7 @@ while True:
 env.render()
 ```
 
-As a more complete example using DDPG reinforcement learning algorithm is placed in 
+As a more complete example using DDPG reinforcement learning algorithm and PyTorch is placed in 
 ```
 virtualTB/ReinforcementLearning/main.py
 ```
