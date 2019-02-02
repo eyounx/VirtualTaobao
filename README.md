@@ -19,7 +19,7 @@ pip install -e .
 
 ### Simulated Environment
 Virtual Taobao simulates the customers, items, and recommendation system. 
-* A customer is associated with 13-dimensional static attributes that has been one-hot encoded in to 88 binary dimensions, and 3-dimensional dynamic attributes. The attributes information about involve customer age, customer gender, customer browsing history, etc.
+* A customer is associated with 13 static attributes that has been one-hot encoded in to 88 binary dimensions, and 3-dimensional dynamic attributes. Here, static/dynmaic means whether the features will change during an interactive process. The attributes information about involve customer age, customer gender, customer browsing history, etc.
 * An item is associated with 27-dimensional attributes indicating the price, sales volume, CTR, etc. (For confidence issue, the itemset content is not exposed.)
 
 An interactive process between the system and a customer is as follows
