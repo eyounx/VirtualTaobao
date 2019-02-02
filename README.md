@@ -7,7 +7,7 @@ Using VirtualTaobao simulator, one can access a "live" environment just like the
 How VirtualTaobao was trained is described in 
 > Jing-Cheng Shi, Yang Yu, Qing Da, Shi-Yong Chen, and An-Xiang Zeng. [Virtual-Taobao: Virtualizing real-world online retail environment for reinforcement learning](https://arxiv.org/abs/1805.10000). In: Proceedings of the 33rd AAAI Conference on Artificial Intelligence (AAAI’19), Honolulu, HI, 2019. 
 
-We release in this repository a VirtualTaobao model for both the recommondation system research and the reinforcement learning research (see the supervised learning and reinforcement learning use cases below). Anyone can this simulator freely, but should give credit to the above reference.
+We release in this repository a VirtualTaobao model for both the recommondation system research and the reinforcement learning research (see the supervised learning and reinforcement learning use cases below). Anyone can use this simulator freely, but should give proper credit to the above reference.
 
 Currently, VirtualTaobao V0 model (VirtualTB-v0) is provided, which was trained from a middle-scaled anonymized Taobao dataset. More larger models will be released soon.
 
