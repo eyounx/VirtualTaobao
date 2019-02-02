@@ -41,9 +41,9 @@ virtualTB/SupervisedLearning/dataset.txt
 
 Each line of the data set consists an instance of features, labels, and the number of clicks, separated by tab.
 
-To train a model from the data set, the following codes give an demonstration
+To train a model from the data set, the following codes give an demonstration using PyTorch
 
-```virtualTB/SupervisedLearning/dataset.txt
+```
 virtualTB/SupervisedLearning/main.py
 ```
 
