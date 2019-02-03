@@ -39,6 +39,26 @@ class ReplayMemory(object):
     def __len__(self):
         return len(self.memory)
 
+class OUNoise:
+
+    def __init__(self, action_dimension, scale=0.1, mu=0, theta=0.15, sigma=0.2):
+        self.action_dimension = action_dimension
+        self.scale = scale
+        self.mu = mu
+        self.theta = theta
+        self.sigma = sigma
+        self.state = np.ones(self.action_dimension) * self.mu
+        self.reset()
+
+    def reset(self):
+        self.state = np.ones(self.action_dimension) * self.mu
+
+    def noise(self):
+        x = self.state
+        dx = self.theta * (self.mu - x) + self.sigma * np.random.randn(len(x))
+        self.state = x + dx
+        return self.state * self.scale
+
 env = gym.make('VirtualTB-v0')
 
 env.seed(0)
@@ -50,14 +70,14 @@ agent = DDPG(gamma = 0.95, tau = 0.001, hidden_size = 128,
 
 memory = ReplayMemory(1000000)
 
-ounoise = None
+ounoise = OUNoise(env.action_space.shape[0])
 param_noise = None
 
 rewards = []
 total_numsteps = 0
 updates = 0
 
-for i_episode in range(1000):
+for i_episode in range(100000):
     state = torch.Tensor([env.reset()])
 
     episode_reward = 0
