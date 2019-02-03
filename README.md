@@ -7,7 +7,7 @@ Using VirtualTaobao simulator, one can access a "live" environment just like the
 How VirtualTaobao was trained is described in 
 > Jing-Cheng Shi, Yang Yu, Qing Da, Shi-Yong Chen, and An-Xiang Zeng. [Virtual-Taobao: Virtualizing real-world online retail environment for reinforcement learning](https://arxiv.org/abs/1805.10000). In: Proceedings of the 33rd AAAI Conference on Artificial Intelligence (AAAI’19), Honolulu, HI, 2019. 
 
-We release in this repository a VirtualTaobao model for both the recommondation system research and the reinforcement learning research (see the supervised learning and reinforcement learning use cases below). Anyone can this simulator freely, but should give credit to the above reference.
+We release in this repository a VirtualTaobao model for both the recommondation system research and the reinforcement learning research (see the supervised learning and reinforcement learning use cases below). Anyone can use this simulator freely, but should give proper credit to the above reference.
 
 Currently, VirtualTaobao V0 model (VirtualTB-v0) is provided, which was trained from a middle-scaled anonymized Taobao dataset. More larger models will be released soon.
 
@@ -19,7 +19,7 @@ pip install -e .
 
 ### Simulated Environment
 Virtual Taobao simulates the customers, items, and recommendation system. 
-* A customer is associated with 13-dimensional static attributes that has been one-hot encoded in to 88 binary dimensions, and 3-dimensional dynamic attributes. The attributes information about involve customer age, customer gender, customer browsing history, etc.
+* A customer is associated with 13 static attributes that has been one-hot encoded in to 88 binary dimensions, and 3-dimensional dynamic attributes. Here, static/dynmaic means whether the features will change during an interactive process. The attributes information about involve customer age, customer gender, customer browsing history, etc.
 * An item is associated with 27-dimensional attributes indicating the price, sales volume, CTR, etc. (For confidence issue, the itemset content is not exposed.)
 
 An interactive process between the system and a customer is as follows
@@ -41,9 +41,9 @@ virtualTB/SupervisedLearning/dataset.txt
 
 Each line of the data set consists an instance of features, labels, and the number of clicks, separated by tab.
 
-To train a model from the data set, the following codes give an demonstration
+To train a model from the data set, the following codes give an demonstration using PyTorch
 
-```virtualTB/SupervisedLearning/dataset.txt
+```
 virtualTB/SupervisedLearning/main.py
 ```
 
