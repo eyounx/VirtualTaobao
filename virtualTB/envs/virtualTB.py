@@ -68,5 +68,5 @@ class VirtualTB(gym.Env):
         print('\t', self.state)
         a, b = np.clip(self.rend_action, a_min = 0, a_max = None)
         print('User\'s action:')
-        print('\tclick:%2d, leave:%s, index:%2d' % (int(a), 'True' if c > self.max_c else 'False', int(c)))
+        print('\tclick:%2d, leave:%s, index:%2d' % (int(a), 'True' if self.total_c > self.max_c else 'False', int(self.total_c)))
         print('Total clicks:', self.total_a)
